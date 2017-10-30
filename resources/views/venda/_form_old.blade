@@ -1,0 +1,47 @@
+<div class="form-group col-xs-12 col-md-6">
+
+	<div class="input-group">
+		<div class="input-group-btn">
+			<a href="http://zxing.appspot.com/scan?ret=http://www.seu-dominio.com.br/seu-arquivo.php?codigo={CODE}" class="btn btn-info" role="button"><i class="fa fa-barcode"></i></a>
+		</div>
+		{!! Form::text('codProduto', null , ['class'=>'form-control', 'placeholder' => 'Codigo' ]) !!}
+	</div>
+</div>
+
+<div class="form-group col-xs-12 col-md-6">
+	{!! Form::text('produto', null , ['class'=>'form-control', 'disabled', 'placeholder' => 'Produto' ]) !!}
+</div>
+
+<div class="form-group col-xs-12 col-md-2">
+	{!! Form::text('vlr_venda', null , ['class'=>'form-control','disabled', 'placeholder' => 'Valor' ]) !!}
+</div>
+
+<div class="form-group col-xs-12 col-md-1">
+{!! Form::text('qtd', null , ['class'=>'form-control', 'placeholder' => 'Quantidade' ]) !!}	
+</div>
+
+<div class="form-group col-xs-12 col-md-2">
+ {!! Form::text('total', null , ['class'=>'form-control', 'disabled', 'placeholder' => 'Total' ]) !!}	
+</div>
+
+<div class="form-group col-xs-12 col-md-1">
+<button type="button" name="add" id="add" class="btn btn-success"><i class="fa fa-plus"></i></button>	
+</div>
+
+
+<table class="table table-bordered table-striped" id="search-table">
+</table>
+
+<div class="form-group col-xs-12 col-md-4">
+	{!! Form::label('tipo_pagamento','Forma de Pagamento') !!}
+	{!! Form::select('tipo_pagamento', ['A VISTA'=>'avista', 'Cartao'=>'cartao', 'Promissoria' =>'promissoria'] , isset($venda->tipo_pagamento)? $venda->tipo_pagamento : null,  ['class'=>'form-control' , 'placeholder' => 'Selecione...'] ) !!}
+</div>
+
+<div class="form-group col-xs-12 col-md-4">
+	{!! Form::label('desconto','Desconto') !!}
+	{!! Form::text('desconto', isset($venda->desconto)? $venda->desconto : 0, ['class'=>'form-control']) !!}
+</div>
+
+{!! Form::hidden('usuario_id', Auth::user()->id) !!}
+{!! Form::hidden('cod_venda', Carbon\Carbon::now()->format('Ymdi')) !!}
+{!! Form::hidden('produto_id', null ) !!}
